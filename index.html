@@ -1,466 +1,1293 @@
-        <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#070812">
+/* =========================================================
+   PARA ADYS 💛
+   Recorrido completo:
+   Flor inicial → Jardín → 7 flores → Caminito → Carta
+   → Final → Lluvia de flores y corazones
+========================================================= */
 
-  <title>Para Adys 💛</title>
 
-  <link rel="stylesheet" href="style.css">
-</head>
+/* =========================================================
+   ELEMENTOS
+========================================================= */
 
-<body>
+const screens = document.querySelectorAll(".screen");
 
-  <!-- EFECTOS DEL FONDO -->
-  <div id="stars" class="stars" aria-hidden="true"></div>
-  <div id="petals" class="petals" aria-hidden="true"></div>
-  <div id="rain" class="rain" aria-hidden="true"></div>
+const intro = document.getElementById("intro");
+const garden = document.getElementById("garden");
+const path = document.getElementById("path");
+const letter = document.getElementById("letter");
+const finalScene = document.getElementById("final");
 
+const startBtn = document.getElementById("startBtn");
+const startFlower = document.getElementById("startFlower");
 
-  <main>
+const flowersContainer = document.getElementById("flowers");
+const gardenNote = document.getElementById("gardenNote");
 
-    <!-- =========================================
-         INICIO
-    ========================================== -->
-    <section id="intro" class="screen scene active">
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
 
-      <div class="moon-glow"></div>
+const flowerModal = document.getElementById("flowerModal");
+const modalFlower = document.getElementById("modalFlower");
+const modalLabel = document.getElementById("modalLabel");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
 
-      <div class="moon" aria-hidden="true"></div>
+const closeFlower = document.getElementById("closeFlower");
+const modalContinue = document.getElementById("modalContinue");
 
+const pathReveal = document.getElementById("pathReveal");
+const toPath = document.getElementById("toPath");
 
-      <div class="intro-content">
+const toLetter = document.getElementById("toLetter");
+const finalBtn = document.getElementById("finalBtn");
+const rainButton = document.getElementById("rainButton");
 
-        <p class="eyebrow">
-          para mi vida
-        </p>
+const pathDots = document.getElementById("pathDots");
+const rain = document.getElementById("rain");
+const petals = document.getElementById("petals");
 
+const music = document.getElementById("music");
 
-        <button
-          id="startBtn"
-          class="flower-button first-flower"
-          aria-label="Tocar la flor"
-          type="button"
-        >
 
-          <span
-            id="startFlower"
-            class="start-flower"
-          >
+/* =========================================================
+   MENSAJES DE LAS 7 FLORES
+========================================================= */
 
-            <span class="stem"></span>
+const flowerData = [
 
-            <span class="flower-head">
-              <i></i>
-              <i></i>
-              <i></i>
-              <i></i>
-              <i></i>
-              <i></i>
-              <b></b>
-            </span>
+  {
+    title: "De ella amo",
+    text: "Su forma sincera de amarme, la tranquilidad que me da, cómo me hace sentir vista, que me respeta y me da mi lugar, su cariño, sentirla cerca así estando lejos, cómo la admiro de verdad y que es ella misma conmigo."
+  },
 
-          </span>
+  {
+    title: "Todo",
+    text: "Todos. Nuestras llamadas, nuestras risas, nuestras noches de película, nuestras conversaciones, nuestros problemas… todos. Porque hasta las cositas difíciles forman parte de nuestra historia."
+  },
 
-        </button>
+  {
+    title: "Lo que sueño contigo",
+    text: "Despertar y que seas lo primero que vea. Hacer un desayuno juntas aunque quede mal. Reírnos por tonterías en la cocina. Tener un día normal y que se vuelva especial solo porque estás ahí. Abrazarte sin tener que extrañar ese abrazo que todavía no me has dado. Llegar cansada y que mi casa seas tú. Caminar a la orilla del mar tomadas de la mano. Un picnic o un día de nosotras hablando, juntas. Y cumplir, vivir juntas todo eso que queremos compartir."
+  },
 
+  {
+    title: "Mis promesas",
+    text: "Te prometo cuidarte, incluso en tus días malos. Te prometo darte tu lugar siempre. Ser tu paz como tú eres la mía. Escucharte, acompañarte, celebrarte y sostenerte. Elegirte todos los días, incluso a la distancia y cuando no sea fácil. Respetarte, quererte bonito y amarte con calma y sinceridad. Seguir construyendo esto con paciencia, amor, detalles y esas cosas pequeñas que nos hacen tanto. Y te prometo que todo esto que hoy es a la distancia, un día será en la misma casita, en la misma cama y con el mismo desayuno que haremos juntas. Te prometo un nosotras."
+  },
 
-        <p class="intro-hint">
-          Tócala, amor...
-        </p>
+  {
+    title: "Recuerda esto",
+    text: "Eres amada de verdad. Mi amor por ti no es de un rato ni por aburrimiento: es real y sincero, con todo mi corazón. Eres suficiente, incluso en tus días malos. No tienes que ser perfecta para que te quiera. Te quiero completa. Vales muchísimo. Aunque dudes de ti, yo veo a una mujer increíble y te admiro. En mí tienes un lugar seguro para ser tú misma. En mí tienes casa. Yo te elijo. De todas las personas, mi corazón te eligió a ti y te sigue eligiendo todos los días, aun a la distancia. Lo que tenemos es bonito, puro y real. Y aunque estemos lejos, nunca estás fuera de mi corazón."
+  },
 
+  {
+    title: "Mi lugar favorito",
+    text: "No es un lugar. Son esas noches en las que terminamos hablando de cualquier cosa, una llamada que se alarga, una risa inesperada, una película juntas o simplemente saber que estás al otro lado. Mi lugar favorito termina siendo cualquier momento en el que estás tú."
+  },
 
-        <p class="intro-message">
-          Que me haya demorado no significa que serás espectadora, mi vida 💗
-        </p>
+  {
+    title: "Nuestro poquito a poquito",
+    text: "No necesito que todo pase de golpe. Quiero que lo nuestro siga creciendo poquito a poquito, paso a paso. Que cada llamada, cada detalle, cada sueño y cada día nos acerque un poquito más a esa vida que imaginamos. Hasta que la distancia deje de ser parte de nuestra historia y podamos vivir juntas todo lo que hoy soñamos."
+  }
 
-      </div>
+];
 
-    </section>
 
+/* =========================================================
+   ESTADO
+========================================================= */
 
+let discoveredFlowers = new Set();
 
-    <!-- =========================================
-         JARDÍN
-    ========================================== -->
-    <section id="garden" class="screen scene">
 
-      <div class="garden-header">
+/* =========================================================
+   CAMBIAR DE PANTALLA
+========================================================= */
 
-        <p class="eyebrow">
-          un pequeño lugar para ti
-        </p>
+function showScreen(id) {
 
-        <h1>
-          Ven, mi amor...
-        </h1>
+  screens.forEach(screen => {
+    screen.classList.remove("active");
+  });
 
-        <p>
-          Hay 7 florecitas esperándote.
-          Tócalas poquito a poquito. 💛
-        </p>
+  const target = document.getElementById(id);
 
-      </div>
+  if (target) {
+    target.classList.add("active");
+  }
 
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 
-      <!--
-        LAS 7 FLORES SE CREAN AUTOMÁTICAMENTE
-        DESDE script.js
-      -->
-      <div
-        id="flowers"
-        class="garden-flowers flowers"
-        aria-label="Jardín interactivo"
-      ></div>
 
+/* =========================================================
+   ESTRELLAS
+========================================================= */
 
-      <!-- MENSAJE QUE APARECE AL TOCAR CADA FLOR -->
-      <div
-        id="gardenNote"
-        class="garden-note"
-      >
-        <p>
-          Toca una florecita para descubrir algo 💛
-        </p>
-      </div>
+function createStars() {
 
+  const stars = document.getElementById("stars");
 
-      <!-- PROGRESO -->
-      <div
-        id="gardenProgress"
-        class="progress"
-      >
+  if (!stars) return;
 
-        <span id="progressText">
-          0 de 7 descubiertas
-        </span>
+  stars.innerHTML = "";
 
-        <div class="progress-track">
-          <div id="progressBar"></div>
-        </div>
+  for (let i = 0; i < 90; i++) {
 
-      </div>
+    const star = document.createElement("span");
 
+    star.className = "star";
 
-      <!--
-        VENTANA PARA LOS MENSAJES DE LAS FLORES.
-        Se mantiene porque forma parte del diseño original.
-      -->
-      <div
-        id="flowerModal"
-        class="modal"
-        aria-hidden="true"
-      >
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
 
-        <div class="modal-backdrop"></div>
+    star.style.animationDelay =
+      Math.random() * 4 + "s";
 
+    star.style.animationDuration =
+      (2 + Math.random() * 4) + "s";
 
-        <article class="flower-card">
+    stars.appendChild(star);
+  }
+}
 
-          <button
-            id="closeFlower"
-            class="close-button"
-            aria-label="Cerrar"
-            type="button"
-          >
-            ×
-          </button>
 
+/* =========================================================
+   CREAR LAS 7 FLORES
+========================================================= */
 
-          <div
-            id="modalFlower"
-            class="mini-flower"
-          ></div>
+function createFlowers() {
 
+  if (!flowersContainer) return;
 
-          <p
-            id="modalLabel"
-            class="eyebrow"
-          ></p>
+  flowersContainer.innerHTML = "";
 
+  flowerData.forEach((flower, index) => {
 
-          <h2 id="modalTitle"></h2>
+    const button = document.createElement("button");
 
+    button.type = "button";
 
-          <p id="modalText"></p>
+    button.className = "flower";
 
+    button.dataset.index = index;
 
-          <button
-            id="modalContinue"
-            class="soft-button"
-            type="button"
-          >
-            Seguir descubriendo 💛
-          </button>
+    button.setAttribute(
+      "aria-label",
+      flower.title
+    );
 
-        </article>
+    button.innerHTML = `
+      <span class="flower-visual">
+        🌻
+      </span>
+    `;
 
-      </div>
+    button.addEventListener("click", () => {
 
+      discoverFlower(index, button);
 
-      <!--
-        APARECE CUANDO LAS 7 FLORES
-        HAN SIDO DESCUBIERTAS.
-      -->
-      <div
-        id="pathReveal"
-        class="path-reveal"
-        aria-hidden="true"
-      >
+    });
 
-        <p>
-          Ya descubriste todas...
-        </p>
+    flowersContainer.appendChild(button);
 
-        <p class="path-line">
-          Ahora sigue el caminito, mi vida ✨
-        </p>
+  });
 
-        <button
-          id="toPath"
-          class="soft-button hidden"
-          type="button"
-        >
-          Seguir los pétalos 💛
-        </button>
+}
 
-      </div>
 
-    </section>
+/* =========================================================
+   DESCUBRIR UNA FLOR
+========================================================= */
 
+function discoverFlower(index, button) {
 
+  const flower = flowerData[index];
 
-    <!-- =========================================
-         CAMINO
-    ========================================== -->
-    <section
-      id="path"
-      class="screen scene"
-    >
+  discoveredFlowers.add(index);
 
-      <div
-        id="pathDots"
-        class="path-dots"
-      ></div>
+  button.classList.add("used");
+  button.classList.add("discovered");
 
+  updateProgress();
 
-      <div class="path-content">
+  openFlowerModal(flower, index);
 
-        <p class="eyebrow">
-          uno por uno...
-        </p>
+  if (discoveredFlowers.size === 7) {
 
+    setTimeout(() => {
 
-        <h1>
-          Hasta donde está lo más importante.
-        </h1>
+      if (pathReveal) {
 
+        pathReveal.classList.add("show");
 
-        <p>
-          Sigue los pétalos, amor.
-        </p>
+        pathReveal.setAttribute(
+          "aria-hidden",
+          "false"
+        );
 
+      }
 
-        <button
-          id="toLetter"
-          class="soft-button"
-          type="button"
-        >
-          Llegar a la carta 💌
-        </button>
+      if (toPath) {
 
-      </div>
+        toPath.classList.remove("hidden");
 
-    </section>
+      }
 
+    }, 500);
 
+  }
 
-    <!-- =========================================
-         CARTA
-    ========================================== -->
-    <section
-      id="letter"
-      class="screen scene"
-    >
+}
 
-      <div class="letter-wrap">
 
-        <div class="letter">
+/* =========================================================
+   PROGRESO
+========================================================= */
 
+function updateProgress() {
 
-          <!-- CABECERA -->
-          <div class="letter-top">
+  const total = flowerData.length;
+  const current = discoveredFlowers.size;
 
-            <span>
-              Para Adys
-            </span>
+  if (progressText) {
 
-            <span>
-              💛
-            </span>
+    progressText.textContent =
+      `${current} de ${total} descubiertas`;
 
-          </div>
+  }
 
+  if (progressBar) {
 
+    progressBar.style.width =
+      `${(current / total) * 100}%`;
 
-          <!-- FOTO -->
-          <div
-            id="photoFrame"
-            class="photo-frame"
-          >
+  }
 
-            <img
-              id="couplePhoto"
-              src="assets/foto-adys.jpg"
-              alt="Una foto de nosotras"
-            >
+}
 
 
-            <div id="photoPlaceholder">
+/* =========================================================
+   ABRIR MODAL
+========================================================= */
 
-              <span>
-                💛
-              </span>
+function openFlowerModal(flower, index) {
 
-              <p>
-                Aquí irá nuestra foto
-              </p>
+  if (!flowerModal) return;
 
-              <small>
-                Vuelve a subirla para integrarla al detalle.
-              </small>
+  if (modalLabel) {
 
-            </div>
+    modalLabel.textContent =
+      `florecita ${index + 1} de 7`;
 
-          </div>
+  }
 
+  if (modalTitle) {
 
+    modalTitle.textContent =
+      flower.title;
 
-          <!-- CUERPO DE LA CARTA -->
-          <div class="letter-body">
+  }
 
-            <p class="letter-greeting">
-              Mi amor, mi vida...
-            </p>
+  if (modalText) {
 
+    modalText.textContent =
+      flower.text;
 
-            <div
-              id="letterPlaceholder"
-              class="letter-placeholder"
-            >
+  }
 
-              <p>
-                La parte más importante todavía está esperando por ti.
-              </p>
+  if (modalFlower) {
 
-              <p>
-                Antes de escribirla quiero conocer algunos detalles más de nosotras para que cuando la leas se sienta realmente como algo que escribió Eli para Adys.
-              </p>
+    modalFlower.innerHTML = "🌻";
 
-              <p class="signature-note">
-                💛 La carta final irá aquí.
-              </p>
+  }
 
-            </div>
+  flowerModal.classList.add("show");
 
+  flowerModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
 
-            <p class="signature">
-              Con muchísimo amor,<br>
-              <strong>
-                tu Eli 💛
-              </strong>
-            </p>
+}
 
-          </div>
 
-        </div>
+/* =========================================================
+   CERRAR MODAL
+========================================================= */
 
+function closeModal() {
 
+  if (!flowerModal) return;
 
-        <button
-          id="finalBtn"
-          class="soft-button"
-          type="button"
-        >
-          Seguir, mi amor ✨
-        </button>
+  flowerModal.classList.remove("show");
 
-      </div>
+  flowerModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
-    </section>
+}
 
 
+if (closeFlower) {
 
-    <!-- =========================================
-         FINAL
-    ========================================== -->
-    <section
-      id="final"
-      class="screen scene"
-    >
+  closeFlower.addEventListener(
+    "click",
+    closeModal
+  );
 
-      <div class="final-glow"></div>
+}
 
 
-      <div class="final-content">
+if (modalContinue) {
 
-        <p class="eyebrow">
-          y antes de irte...
-        </p>
+  modalContinue.addEventListener(
+    "click",
+    closeModal
+  );
 
+}
 
-        <h1>
-          Mi amor, mi vida,<br>
-          mi esposita preciosa... 💗
-        </h1>
 
+/* =========================================================
+   CERRAR AL TOCAR EL FONDO
+========================================================= */
 
-        <p>
-          Que nunca se te olvide que,
-          entre todas estas flores,
-          siempre voy a escoger la misma:
-          tú. 💗
-        </p>
+if (flowerModal) {
 
+  const backdrop =
+    flowerModal.querySelector(
+      ".modal-backdrop"
+    );
 
-        <p class="big-love">
-          Te amo mucho, mucho, mucho.
-        </p>
+  if (backdrop) {
 
+    backdrop.addEventListener(
+      "click",
+      closeModal
+    );
 
-        <button
-          id="rainButton"
-          class="soft-button"
-          type="button"
-          onclick="makeRain()"
-        >
-          Lluvia para mi niña 🌼
-        </button>
+  }
 
-      </div>
+}
 
-    </section>
 
-  </main>
+/* =========================================================
+   FLOR INICIAL
+========================================================= */
 
+if (startBtn) {
 
+  startBtn.addEventListener("click", () => {
 
-  <!-- =========================================
-       MÚSICA
-  ========================================== -->
-  <audio
-    id="music"
-    src="assets/music.mp3"
-    preload="auto"
-  ></audio>
+    if (startFlower) {
 
+      startFlower.classList.add("grow");
 
+    }
 
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================== -->
-  <script src="script.js"></script>
+    /*
+      Intentamos reproducir la música.
+      Los navegadores pueden bloquearla,
+      por eso no detenemos el recorrido si falla.
+    */
 
-</body>
-</html>
+    if (music) {
+
+      music.volume = 0.45;
+
+      const playPromise =
+        music.play();
+
+      if (playPromise) {
+
+        playPromise.catch(() => {});
+
+      }
+
+    }
+
+    setTimeout(() => {
+
+      showScreen("garden");
+
+    }, 800);
+
+  });
+
+}
+
+
+/* =========================================================
+   CAMINITO DESDE EL JARDÍN
+========================================================= */
+
+if (toPath) {
+
+  toPath.addEventListener("click", () => {
+
+    closeModal();
+
+    createPath();
+
+    showScreen("path");
+
+  });
+
+}
+
+
+/* =========================================================
+   CREAR PÉTALOS DEL CAMINO
+========================================================= */
+
+function createPath() {
+
+  if (!pathDots) return;
+
+  pathDots.innerHTML = "";
+
+  for (let i = 0; i < 55; i++) {
+
+    const petal =
+      document.createElement("span");
+
+    petal.className = "path-petal";
+
+    petal.textContent =
+      Math.random() > 0.35
+        ? "🌼"
+        : "🌸";
+
+    petal.style.left =
+      (8 + Math.random() * 84) + "%";
+
+    petal.style.top =
+      (5 + Math.random() * 90) + "%";
+
+    petal.style.animationDelay =
+      (Math.random() * 1.5) + "s";
+
+    pathDots.appendChild(petal);
+
+  }
+
+}
+
+
+/* =========================================================
+   CAMINO → CARTA
+========================================================= */
+
+if (toLetter) {
+
+  toLetter.addEventListener("click", () => {
+
+    showScreen("letter");
+
+  });
+
+}
+
+
+/* =========================================================
+   CARTA → FINAL
+========================================================= */
+
+if (finalBtn) {
+
+  finalBtn.addEventListener("click", () => {
+
+    showScreen("final");
+
+    /*
+      Pequeña espera para que la pantalla
+      aparezca antes de comenzar la lluvia.
+    */
+
+    setTimeout(() => {
+
+      makeRain();
+
+    }, 500);
+
+  });
+
+}
+
+
+/* =========================================================
+   LLUVIA DE FLORES Y CORAZONES
+========================================================= */
+
+function makeRain() {
+
+  if (!rain) return;
+
+  rain.innerHTML = "";
+
+  for (let i = 0; i < 90; i++) {
+
+    const item =
+      document.createElement("span");
+
+    item.className = "heart";
+
+    const random =
+      Math.random();
+
+    if (random > 0.65) {
+
+      item.textContent = "🌼";
+
+    } else if (random > 0.30) {
+
+      item.textContent = "💛";
+
+    } else {
+
+      item.textContent = "🌸";
+
+    }
+
+    item.style.left =
+      Math.random() * 100 + "%";
+
+    item.style.fontSize =
+      (14 + Math.random() * 20) + "px";
+
+    item.style.animationDuration =
+      (3 + Math.random() * 5) + "s";
+
+    item.style.animationDelay =
+      Math.random() * 4 + "s";
+
+    rain.appendChild(item);
+
+  }
+
+}
+
+
+/* =========================================================
+   BOTÓN DE LLUVIA
+========================================================= */
+
+if (rainButton) {
+
+  rainButton.addEventListener(
+    "click",
+    makeRain
+  );
+
+}
+
+
+/* =========================================================
+   PÉTALOS DECORATIVOS
+========================================================= */
+
+function makePetals() {
+
+  if (!petals) return;
+
+  petals.innerHTML = "";
+
+  for (let i = 0; i < 65; i++) {
+
+    const petal =
+      document.createElement("span");
+
+    petal.className = "petal";
+
+    petal.textContent =
+      Math.random() > 0.35
+        ? "🌼"
+        : "🌸";
+
+    petal.style.left =
+      Math.random() * 100 + "%";
+
+    petal.style.top =
+      Math.random() * 100 + "%";
+
+    petal.style.animationDelay =
+      Math.random() * 2 + "s";
+
+    petal.style.animationDuration =
+      (4 + Math.random() * 5) + "s";
+
+    petals.appendChild(petal);
+
+  }
+
+}
+
+
+/* =========================================================
+   INICIAR EFECTOS
+========================================================= */
+
+createStars();
+createFlowers();
+updateProgress();
+makePetals();
+
+
+/* =========================================================
+   TECLA ESCAPE PARA CERRAR LA FLOR
+========================================================= */
+
+document.addEventListener(
+ /* =========================================================
+   PARA ADYS 💛
+   Recorrido completo:
+   Flor inicial → Jardín → 7 flores → Caminito → Carta
+   → Final → Lluvia de flores y corazones
+========================================================= */
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const screens = document.querySelectorAll(".screen");
+
+const intro = document.getElementById("intro");
+const garden = document.getElementById("garden");
+const path = document.getElementById("path");
+const letter = document.getElementById("letter");
+const finalScene = document.getElementById("final");
+
+const startBtn = document.getElementById("startBtn");
+const startFlower = document.getElementById("startFlower");
+
+const flowersContainer = document.getElementById("flowers");
+const gardenNote = document.getElementById("gardenNote");
+
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+const flowerModal = document.getElementById("flowerModal");
+const modalFlower = document.getElementById("modalFlower");
+const modalLabel = document.getElementById("modalLabel");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+
+const closeFlower = document.getElementById("closeFlower");
+const modalContinue = document.getElementById("modalContinue");
+
+const pathReveal = document.getElementById("pathReveal");
+const toPath = document.getElementById("toPath");
+
+const toLetter = document.getElementById("toLetter");
+const finalBtn = document.getElementById("finalBtn");
+const rainButton = document.getElementById("rainButton");
+
+const pathDots = document.getElementById("pathDots");
+const rain = document.getElementById("rain");
+const petals = document.getElementById("petals");
+
+const music = document.getElementById("music");
+
+
+/* =========================================================
+   MENSAJES DE LAS 7 FLORES
+========================================================= */
+
+const flowerData = [
+
+  {
+    title: "De ella amo",
+    text: "Su forma sincera de amarme, la tranquilidad que me da, cómo me hace sentir vista, que me respeta y me da mi lugar, su cariño, sentirla cerca así estando lejos, cómo la admiro de verdad y que es ella misma conmigo."
+  },
+
+  {
+    title: "Todo",
+    text: "Todos. Nuestras llamadas, nuestras risas, nuestras noches de película, nuestras conversaciones, nuestros problemas… todos. Porque hasta las cositas difíciles forman parte de nuestra historia."
+  },
+
+  {
+    title: "Lo que sueño contigo",
+    text: "Despertar y que seas lo primero que vea. Hacer un desayuno juntas aunque quede mal. Reírnos por tonterías en la cocina. Tener un día normal y que se vuelva especial solo porque estás ahí. Abrazarte sin tener que extrañar ese abrazo que todavía no me has dado. Llegar cansada y que mi casa seas tú. Caminar a la orilla del mar tomadas de la mano. Un picnic o un día de nosotras hablando, juntas. Y cumplir, vivir juntas todo eso que queremos compartir."
+  },
+
+  {
+    title: "Mis promesas",
+    text: "Te prometo cuidarte, incluso en tus días malos. Te prometo darte tu lugar siempre. Ser tu paz como tú eres la mía. Escucharte, acompañarte, celebrarte y sostenerte. Elegirte todos los días, incluso a la distancia y cuando no sea fácil. Respetarte, quererte bonito y amarte con calma y sinceridad. Seguir construyendo esto con paciencia, amor, detalles y esas cosas pequeñas que nos hacen tanto. Y te prometo que todo esto que hoy es a la distancia, un día será en la misma casita, en la misma cama y con el mismo desayuno que haremos juntas. Te prometo un nosotras."
+  },
+
+  {
+    title: "Recuerda esto",
+    text: "Eres amada de verdad. Mi amor por ti no es de un rato ni por aburrimiento: es real y sincero, con todo mi corazón. Eres suficiente, incluso en tus días malos. No tienes que ser perfecta para que te quiera. Te quiero completa. Vales muchísimo. Aunque dudes de ti, yo veo a una mujer increíble y te admiro. En mí tienes un lugar seguro para ser tú misma. En mí tienes casa. Yo te elijo. De todas las personas, mi corazón te eligió a ti y te sigue eligiendo todos los días, aun a la distancia. Lo que tenemos es bonito, puro y real. Y aunque estemos lejos, nunca estás fuera de mi corazón."
+  },
+
+  {
+    title: "Mi lugar favorito",
+    text: "No es un lugar. Son esas noches en las que terminamos hablando de cualquier cosa, una llamada que se alarga, una risa inesperada, una película juntas o simplemente saber que estás al otro lado. Mi lugar favorito termina siendo cualquier momento en el que estás tú."
+  },
+
+  {
+    title: "Nuestro poquito a poquito",
+    text: "No necesito que todo pase de golpe. Quiero que lo nuestro siga creciendo poquito a poquito, paso a paso. Que cada llamada, cada detalle, cada sueño y cada día nos acerque un poquito más a esa vida que imaginamos. Hasta que la distancia deje de ser parte de nuestra historia y podamos vivir juntas todo lo que hoy soñamos."
+  }
+
+];
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+let discoveredFlowers = new Set();
+
+
+/* =========================================================
+   CAMBIAR DE PANTALLA
+========================================================= */
+
+function showScreen(id) {
+
+  screens.forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  const target = document.getElementById(id);
+
+  if (target) {
+    target.classList.add("active");
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+function createStars() {
+
+  const stars = document.getElementById("stars");
+
+  if (!stars) return;
+
+  stars.innerHTML = "";
+
+  for (let i = 0; i < 90; i++) {
+
+    const star = document.createElement("span");
+
+    star.className = "star";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+      Math.random() * 4 + "s";
+
+    star.style.animationDuration =
+      (2 + Math.random() * 4) + "s";
+
+    stars.appendChild(star);
+  }
+}
+
+
+/* =========================================================
+   CREAR LAS 7 FLORES
+========================================================= */
+
+function createFlowers() {
+
+  if (!flowersContainer) return;
+
+  flowersContainer.innerHTML = "";
+
+  flowerData.forEach((flower, index) => {
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+
+    button.className = "flower";
+
+    button.dataset.index = index;
+
+    button.setAttribute(
+      "aria-label",
+      flower.title
+    );
+
+    button.innerHTML = `
+      <span class="flower-visual">
+        🌻
+      </span>
+    `;
+
+    button.addEventListener("click", () => {
+
+      discoverFlower(index, button);
+
+    });
+
+    flowersContainer.appendChild(button);
+
+  });
+
+}
+
+
+/* =========================================================
+   DESCUBRIR UNA FLOR
+========================================================= */
+
+function discoverFlower(index, button) {
+
+  const flower = flowerData[index];
+
+  discoveredFlowers.add(index);
+
+  button.classList.add("used");
+  button.classList.add("discovered");
+
+  updateProgress();
+
+  openFlowerModal(flower, index);
+
+  if (discoveredFlowers.size === 7) {
+
+    setTimeout(() => {
+
+      if (pathReveal) {
+
+        pathReveal.classList.add("show");
+
+        pathReveal.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+      }
+
+      if (toPath) {
+
+        toPath.classList.remove("hidden");
+
+      }
+
+    }, 500);
+
+  }
+
+}
+
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+function updateProgress() {
+
+  const total = flowerData.length;
+  const current = discoveredFlowers.size;
+
+  if (progressText) {
+
+    progressText.textContent =
+      `${current} de ${total} descubiertas`;
+
+  }
+
+  if (progressBar) {
+
+    progressBar.style.width =
+      `${(current / total) * 100}%`;
+
+  }
+
+}
+
+
+/* =========================================================
+   ABRIR MODAL
+========================================================= */
+
+function openFlowerModal(flower, index) {
+
+  if (!flowerModal) return;
+
+  if (modalLabel) {
+
+    modalLabel.textContent =
+      `florecita ${index + 1} de 7`;
+
+  }
+
+  if (modalTitle) {
+
+    modalTitle.textContent =
+      flower.title;
+
+  }
+
+  if (modalText) {
+
+    modalText.textContent =
+      flower.text;
+
+  }
+
+  if (modalFlower) {
+
+    modalFlower.innerHTML = "🌻";
+
+  }
+
+  flowerModal.classList.add("show");
+
+  flowerModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+
+/* =========================================================
+   CERRAR MODAL
+========================================================= */
+
+function closeModal() {
+
+  if (!flowerModal) return;
+
+  flowerModal.classList.remove("show");
+
+  flowerModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+}
+
+
+if (closeFlower) {
+
+  closeFlower.addEventListener(
+    "click",
+    closeModal
+  );
+
+}
+
+
+if (modalContinue) {
+
+  modalContinue.addEventListener(
+    "click",
+    closeModal
+  );
+
+}
+
+
+/* =========================================================
+   CERRAR AL TOCAR EL FONDO
+========================================================= */
+
+if (flowerModal) {
+
+  const backdrop =
+    flowerModal.querySelector(
+      ".modal-backdrop"
+    );
+
+  if (backdrop) {
+
+    backdrop.addEventListener(
+      "click",
+      closeModal
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   FLOR INICIAL
+========================================================= */
+
+if (startBtn) {
+
+  startBtn.addEventListener("click", () => {
+
+    if (startFlower) {
+
+      startFlower.classList.add("grow");
+
+    }
+
+    /*
+      Intentamos reproducir la música.
+      Los navegadores pueden bloquearla,
+      por eso no detenemos el recorrido si falla.
+    */
+
+    if (music) {
+
+      music.volume = 0.45;
+
+      const playPromise =
+        music.play();
+
+      if (playPromise) {
+
+        playPromise.catch(() => {});
+
+      }
+
+    }
+
+    setTimeout(() => {
+
+      showScreen("garden");
+
+    }, 800);
+
+  });
+
+}
+
+
+/* =========================================================
+   CAMINITO DESDE EL JARDÍN
+========================================================= */
+
+if (toPath) {
+
+  toPath.addEventListener("click", () => {
+
+    closeModal();
+
+    createPath();
+
+    showScreen("path");
+
+  });
+
+}
+
+
+/* =========================================================
+   CREAR PÉTALOS DEL CAMINO
+========================================================= */
+
+function createPath() {
+
+  if (!pathDots) return;
+
+  pathDots.innerHTML = "";
+
+  for (let i = 0; i < 55; i++) {
+
+    const petal =
+      document.createElement("span");
+
+    petal.className = "path-petal";
+
+    petal.textContent =
+      Math.random() > 0.35
+        ? "🌼"
+        : "🌸";
+
+    petal.style.left =
+      (8 + Math.random() * 84) + "%";
+
+    petal.style.top =
+      (5 + Math.random() * 90) + "%";
+
+    petal.style.animationDelay =
+      (Math.random() * 1.5) + "s";
+
+    pathDots.appendChild(petal);
+
+  }
+
+}
+
+
+/* =========================================================
+   CAMINO → CARTA
+========================================================= */
+
+if (toLetter) {
+
+  toLetter.addEventListener("click", () => {
+
+    showScreen("letter");
+
+  });
+
+}
+
+
+/* =========================================================
+   CARTA → FINAL
+========================================================= */
+
+if (finalBtn) {
+
+  finalBtn.addEventListener("click", () => {
+
+    showScreen("final");
+
+    /*
+      Pequeña espera para que la pantalla
+      aparezca antes de comenzar la lluvia.
+    */
+
+    setTimeout(() => {
+
+      makeRain();
+
+    }, 500);
+
+  });
+
+}
+
+
+/* =========================================================
+   LLUVIA DE FLORES Y CORAZONES
+========================================================= */
+
+function makeRain() {
+
+  if (!rain) return;
+
+  rain.innerHTML = "";
+
+  for (let i = 0; i < 90; i++) {
+
+    const item =
+      document.createElement("span");
+
+    item.className = "heart";
+
+    const random =
+      Math.random();
+
+    if (random > 0.65) {
+
+      item.textContent = "🌼";
+
+    } else if (random > 0.30) {
+
+      item.textContent = "💛";
+
+    } else {
+
+      item.textContent = "🌸";
+
+    }
+
+    item.style.left =
+      Math.random() * 100 + "%";
+
+    item.style.fontSize =
+      (14 + Math.random() * 20) + "px";
+
+    item.style.animationDuration =
+      (3 + Math.random() * 5) + "s";
+
+    item.style.animationDelay =
+      Math.random() * 4 + "s";
+
+    rain.appendChild(item);
+
+  }
+
+}
+
+
+/* =========================================================
+   BOTÓN DE LLUVIA
+========================================================= */
+
+if (rainButton) {
+
+  rainButton.addEventListener(
+    "click",
+    makeRain
+  );
+
+}
+
+
+/* =========================================================
+   PÉTALOS DECORATIVOS
+========================================================= */
+
+function makePetals() {
+
+  if (!petals) return;
+
+  petals.innerHTML = "";
+
+  for (let i = 0; i < 65; i++) {
+
+    const petal =
+      document.createElement("span");
+
+    petal.className = "petal";
+
+    petal.textContent =
+      Math.random() > 0.35
+        ? "🌼"
+        : "🌸";
+
+    petal.style.left =
+      Math.random() * 100 + "%";
+
+    petal.style.top =
+      Math.random() * 100 + "%";
+
+    petal.style.animationDelay =
+      Math.random() * 2 + "s";
+
+    petal.style.animationDuration =
+      (4 + Math.random() * 5) + "s";
+
+    petals.appendChild(petal);
+
+  }
+
+}
+
+
+/* =========================================================
+   INICIAR EFECTOS
+========================================================= */
+
+createStars();
+createFlowers();
+updateProgress();
+makePetals();
+
+
+/* =========================================================
+   TECLA ESCAPE PARA CERRAR LA FLOR
+========================================================= */
+
+document.addEventListener(
+ 
