@@ -1,53 +1,285 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi vida</title>
-<style>
-  body{margin:0;background:#08080f;color:white;font-family:serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;overflow:hidden}
-  .luna{width:90px;height:90px;background:radial-gradient(circle at 30% 30%, #fff, #d1c7a5);border-radius:50%;box-shadow:0 0 40px #fff6;position:relative;margin-bottom:20px}
-  .luna::after{content:'';position:absolute;width:100%;height:100%;background:#08080f;border-radius:50%;left:35%;top:0}
-  h2{letter-spacing:4px;font-size:12px;color:#c9b896;margin:10px}
-  #flor{font-size:90px;cursor:pointer;background:none;border:none;filter:drop-shadow(0 0 15px #ffeb3b);animation:latir 1.5s infinite}
-  @keyframes latir{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-  #jardin{display:none;position:fixed;inset:0;background:#08080f;flex-direction:column;align-items:center;justify-content:center;z-index:10;padding:20px;text-align:center}
-  #jardin.activa{display:flex}
-  .foto{width:180px;height:180px;border-radius:50%;object-fit:cover;border:2px solid #ffeb3b;box-shadow:0 0 25px #ffeb3b88;margin:20px 0}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Para Adys 💛</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="luna"></div>
-  <h2>PARA MI VIDA</h2>
-  
-  <button id="flor">🌼</button>
-  <p style="margin-top:15px;font-size:14px;opacity:.8">Tócala, amor...</p>
-  <p style="font-size:13px;max-width:250px;text-align:center;margin-top:30px;line-height:1.4">Que me haya demorado no significa que serás espectadora, mi vida 💗</p>
 
-  <div id="jardin">
-    <div style="font-size:40px">🌼💛🌼</div>
-    <img src="assets/foto-adys.png" class="foto" onerror="this.style.display='none'">
-    <h2 style="font-size:20px;color:#ffeb3b">Para ti, Adys</h2>
-    <p style="max-width:300px">Estas flores amarillas son para ti, porque te amo y porque mereces todo lo bonito del mundo.</p>
-    <p style="font-size:12px;opacity:.6;margin-top:20px">Toca de nuevo para volver</p>
-  </div>
+  <!-- EFECTOS -->
+  <div id="petals" class="petals"></div>
+  <div id="rain" class="rain"></div>
 
-  <audio id="musica" src="assets/stand-by-me.mp4" loop preload="auto"></audio>
+  <main>
 
-<script>
-const flor = document.getElementById('flor');
-const jardin = document.getElementById('jardin');
-const musica = document.getElementById('musica');
+    <!-- =========================
+         INICIO
+    ========================== -->
+    <section id="intro" class="screen active">
 
-function abrir(){
-  musica.play().then(()=>{console.log("sonando")}).catch(e=>{alert("La música no se pudo reproducir: "+e)});
-  jardin.classList.add('activa');
-}
+      <div class="intro-content">
 
-flor.addEventListener('click', abrir);
-flor.addEventListener('touchstart', (e)=>{e.preventDefault(); abrir();});
+        <p class="eyebrow">
+          para mi vida
+        </p>
 
-jardin.addEventListener('click', ()=>{jardin.classList.remove('activa'); musica.pause();});
-</script>
+        <button
+          id="startBtn"
+          class="start-button"
+          aria-label="Tocar la flor"
+        >
+
+          <span
+            id="startFlower"
+            class="start-flower"
+          >
+            🌻
+          </span>
+
+        </button>
+
+        <p class="intro-hint">
+          Tócala, amor...
+        </p>
+
+        <p class="intro-message">
+          Que me haya demorado no significa que serás espectadora, mi vida 💗
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         JARDÍN
+    ========================== -->
+    <section id="garden" class="screen">
+
+      <div class="garden-header">
+
+        <p class="eyebrow">
+          un pequeño lugar para ti
+        </p>
+
+        <h1>
+          Ven, mi amor...
+        </h1>
+
+        <p>
+          Hay 7 florecitas esperándote.
+          Tócalas poquito a poquito. 💛
+        </p>
+
+      </div>
+
+
+      <!-- AQUÍ JAVASCRIPT CREARÁ LAS 7 FLORES -->
+      <div
+        id="flowers"
+        class="flowers"
+      ></div>
+
+
+      <!-- MENSAJE DE CADA FLOR -->
+      <div
+        id="gardenNote"
+        class="garden-note"
+      >
+        <p>
+          Toca una florecita para descubrir algo 💛
+        </p>
+      </div>
+
+
+      <!-- BOTÓN QUE APARECE AL DESCUBRIR LAS 7 -->
+      <button
+        id="toPath"
+        class="soft-button hidden"
+      >
+        Seguir los pétalos 💛
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+         CAMINO
+    ========================== -->
+    <section id="path" class="screen">
+
+      <div class="path-content">
+
+        <p class="eyebrow">
+          uno por uno...
+        </p>
+
+        <h1>
+          Hasta donde está lo más importante.
+        </h1>
+
+        <p>
+          Sigue los pétalos, amor.
+        </p>
+
+        <button
+          id="toLetter"
+          class="soft-button"
+        >
+          Llegar a la carta 💌
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CARTA
+    ========================== -->
+    <section id="letter" class="screen">
+
+      <div class="letter-wrap">
+
+        <div class="letter">
+
+          <div class="letter-top">
+            <span>
+              Para Adys
+            </span>
+
+            <span>
+              💛
+            </span>
+          </div>
+
+
+          <div class="photo-frame">
+
+            <img
+              src="assets/foto-adys.jpg"
+              alt="Una foto de nosotras"
+              onerror="this.style.display='none';"
+            >
+
+            <div class="photo-placeholder">
+              <span>💛</span>
+
+              <p>
+                Aquí irá nuestra foto
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="letter-body">
+
+            <p class="letter-greeting">
+              Mi amor, mi vida...
+            </p>
+
+
+            <div class="letter-placeholder">
+
+              <p>
+                La parte más importante todavía está esperando por ti.
+              </p>
+
+              <p>
+                Antes de escribirla quiero conocer algunos detalles más de nosotras para que cuando la leas se sienta realmente como algo que escribió Eli para Adys.
+              </p>
+
+              <p class="signature-note">
+                💛 La carta final irá aquí.
+              </p>
+
+            </div>
+
+
+            <p class="signature">
+              Con muchísimo amor,<br>
+              <strong>
+                tu Eli 💛
+              </strong>
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="finalBtn"
+          class="soft-button"
+        >
+          Seguir, mi amor ✨
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL
+    ========================== -->
+    <section id="final" class="screen">
+
+      <div class="final-content">
+
+        <p class="eyebrow">
+          y antes de irte...
+        </p>
+
+        <h1>
+          Mi amor, mi vida,<br>
+          mi esposita preciosa... 💗
+        </h1>
+
+        <p>
+          Que nunca se te olvide que,
+          entre todas estas flores,
+          siempre voy a escoger la misma:
+          tú. 💗
+        </p>
+
+        <p class="big-love">
+          Te amo mucho, mucho, mucho.
+        </p>
+
+        <button
+          id="rainButton"
+          class="soft-button"
+          onclick="makeRain()"
+        >
+          Lluvia para mi niña 🌼
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- MÚSICA OPCIONAL -->
+  <audio
+    id="music"
+    src="assets/music.mp3"
+    preload="auto"
+  ></audio>
+
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+
 </body>
 </html>
