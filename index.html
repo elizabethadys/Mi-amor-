@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#070812">
 
   <title>Para Adys 💛</title>
 
@@ -12,16 +12,23 @@
 
 <body>
 
-  <!-- EFECTOS -->
-  <div id="petals" class="petals"></div>
-  <div id="rain" class="rain"></div>
+  <!-- EFECTOS DEL FONDO -->
+  <div id="stars" class="stars" aria-hidden="true"></div>
+  <div id="petals" class="petals" aria-hidden="true"></div>
+  <div id="rain" class="rain" aria-hidden="true"></div>
+
 
   <main>
 
-    <!-- =========================
+    <!-- =========================================
          INICIO
-    ========================== -->
-    <section id="intro" class="screen active">
+    ========================================== -->
+    <section id="intro" class="screen scene active">
+
+      <div class="moon-glow"></div>
+
+      <div class="moon" aria-hidden="true"></div>
+
 
       <div class="intro-content">
 
@@ -29,24 +36,40 @@
           para mi vida
         </p>
 
+
         <button
           id="startBtn"
-          class="start-button"
+          class="flower-button first-flower"
           aria-label="Tocar la flor"
+          type="button"
         >
 
           <span
             id="startFlower"
             class="start-flower"
           >
-            🌻
+
+            <span class="stem"></span>
+
+            <span class="flower-head">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <b></b>
+            </span>
+
           </span>
 
         </button>
 
+
         <p class="intro-hint">
           Tócala, amor...
         </p>
+
 
         <p class="intro-message">
           Que me haya demorado no significa que serás espectadora, mi vida 💗
@@ -57,10 +80,11 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =========================================
          JARDÍN
-    ========================== -->
-    <section id="garden" class="screen">
+    ========================================== -->
+    <section id="garden" class="screen scene">
 
       <div class="garden-header">
 
@@ -80,14 +104,18 @@
       </div>
 
 
-      <!-- AQUÍ JAVASCRIPT CREARÁ LAS 7 FLORES -->
+      <!--
+        LAS 7 FLORES SE CREAN AUTOMÁTICAMENTE
+        DESDE script.js
+      -->
       <div
         id="flowers"
-        class="flowers"
+        class="garden-flowers flowers"
+        aria-label="Jardín interactivo"
       ></div>
 
 
-      <!-- MENSAJE DE CADA FLOR -->
+      <!-- MENSAJE QUE APARECE AL TOCAR CADA FLOR -->
       <div
         id="gardenNote"
         class="garden-note"
@@ -98,21 +126,124 @@
       </div>
 
 
-      <!-- BOTÓN QUE APARECE AL DESCUBRIR LAS 7 -->
-      <button
-        id="toPath"
-        class="soft-button hidden"
+      <!-- PROGRESO -->
+      <div
+        id="gardenProgress"
+        class="progress"
       >
-        Seguir los pétalos 💛
-      </button>
+
+        <span id="progressText">
+          0 de 7 descubiertas
+        </span>
+
+        <div class="progress-track">
+          <div id="progressBar"></div>
+        </div>
+
+      </div>
+
+
+      <!--
+        VENTANA PARA LOS MENSAJES DE LAS FLORES.
+        Se mantiene porque forma parte del diseño original.
+      -->
+      <div
+        id="flowerModal"
+        class="modal"
+        aria-hidden="true"
+      >
+
+        <div class="modal-backdrop"></div>
+
+
+        <article class="flower-card">
+
+          <button
+            id="closeFlower"
+            class="close-button"
+            aria-label="Cerrar"
+            type="button"
+          >
+            ×
+          </button>
+
+
+          <div
+            id="modalFlower"
+            class="mini-flower"
+          ></div>
+
+
+          <p
+            id="modalLabel"
+            class="eyebrow"
+          ></p>
+
+
+          <h2 id="modalTitle"></h2>
+
+
+          <p id="modalText"></p>
+
+
+          <button
+            id="modalContinue"
+            class="soft-button"
+            type="button"
+          >
+            Seguir descubriendo 💛
+          </button>
+
+        </article>
+
+      </div>
+
+
+      <!--
+        APARECE CUANDO LAS 7 FLORES
+        HAN SIDO DESCUBIERTAS.
+      -->
+      <div
+        id="pathReveal"
+        class="path-reveal"
+        aria-hidden="true"
+      >
+
+        <p>
+          Ya descubriste todas...
+        </p>
+
+        <p class="path-line">
+          Ahora sigue el caminito, mi vida ✨
+        </p>
+
+        <button
+          id="toPath"
+          class="soft-button hidden"
+          type="button"
+        >
+          Seguir los pétalos 💛
+        </button>
+
+      </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =========================================
          CAMINO
-    ========================== -->
-    <section id="path" class="screen">
+    ========================================== -->
+    <section
+      id="path"
+      class="screen scene"
+    >
+
+      <div
+        id="pathDots"
+        class="path-dots"
+      ></div>
+
 
       <div class="path-content">
 
@@ -120,17 +251,21 @@
           uno por uno...
         </p>
 
+
         <h1>
           Hasta donde está lo más importante.
         </h1>
+
 
         <p>
           Sigue los pétalos, amor.
         </p>
 
+
         <button
           id="toLetter"
           class="soft-button"
+          type="button"
         >
           Llegar a la carta 💌
         </button>
@@ -140,16 +275,23 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =========================================
          CARTA
-    ========================== -->
-    <section id="letter" class="screen">
+    ========================================== -->
+    <section
+      id="letter"
+      class="screen scene"
+    >
 
       <div class="letter-wrap">
 
         <div class="letter">
 
+
+          <!-- CABECERA -->
           <div class="letter-top">
+
             <span>
               Para Adys
             </span>
@@ -157,29 +299,45 @@
             <span>
               💛
             </span>
+
           </div>
 
 
-          <div class="photo-frame">
+
+          <!-- FOTO -->
+          <div
+            id="photoFrame"
+            class="photo-frame"
+          >
 
             <img
+              id="couplePhoto"
               src="assets/foto-adys.jpg"
               alt="Una foto de nosotras"
-              onerror="this.style.display='none';"
             >
 
-            <div class="photo-placeholder">
-              <span>💛</span>
+
+            <div id="photoPlaceholder">
+
+              <span>
+                💛
+              </span>
 
               <p>
                 Aquí irá nuestra foto
               </p>
+
+              <small>
+                Vuelve a subirla para integrarla al detalle.
+              </small>
 
             </div>
 
           </div>
 
 
+
+          <!-- CUERPO DE LA CARTA -->
           <div class="letter-body">
 
             <p class="letter-greeting">
@@ -187,7 +345,10 @@
             </p>
 
 
-            <div class="letter-placeholder">
+            <div
+              id="letterPlaceholder"
+              class="letter-placeholder"
+            >
 
               <p>
                 La parte más importante todavía está esperando por ti.
@@ -216,9 +377,11 @@
         </div>
 
 
+
         <button
           id="finalBtn"
           class="soft-button"
+          type="button"
         >
           Seguir, mi amor ✨
         </button>
@@ -228,10 +391,17 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =========================================
          FINAL
-    ========================== -->
-    <section id="final" class="screen">
+    ========================================== -->
+    <section
+      id="final"
+      class="screen scene"
+    >
+
+      <div class="final-glow"></div>
+
 
       <div class="final-content">
 
@@ -239,10 +409,12 @@
           y antes de irte...
         </p>
 
+
         <h1>
           Mi amor, mi vida,<br>
           mi esposita preciosa... 💗
         </h1>
+
 
         <p>
           Que nunca se te olvide que,
@@ -251,13 +423,16 @@
           tú. 💗
         </p>
 
+
         <p class="big-love">
           Te amo mucho, mucho, mucho.
         </p>
 
+
         <button
           id="rainButton"
           class="soft-button"
+          type="button"
           onclick="makeRain()"
         >
           Lluvia para mi niña 🌼
@@ -270,7 +445,10 @@
   </main>
 
 
-  <!-- MÚSICA OPCIONAL -->
+
+  <!-- =========================================
+       MÚSICA
+  ========================================== -->
   <audio
     id="music"
     src="assets/music.mp3"
@@ -278,7 +456,10 @@
   ></audio>
 
 
-  <!-- JAVASCRIPT -->
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
   <script src="script.js"></script>
 
 </body>
