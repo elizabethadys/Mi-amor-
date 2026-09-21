@@ -1,82 +1,417 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#070812">
-<title>Para Adys 💗</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080914">
+  <title>Para Adys 💛</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div id="stars" class="stars"></div>
-<div id="petals" class="petals"></div>
-<audio id="music" src="assets/stand-by-me.mp4" preload="auto" loop></audio>
-<button id="musicToggle" class="music-toggle" aria-label="Pausar música">♫</button>
-<main>
-<section id="intro" class="scene active">
-  <div class="moon-glow"></div><div class="moon"></div>
-  <div class="intro-content">
-    <p class="eyebrow">para mi vida</p>
-    <button id="firstFlower" class="flower-button first-flower" aria-label="Tocar la flor"><span class="stem"></span><span class="flower-head"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></span></button>
-    <p class="intro-hint">Tócala, amor...</p>
-    <p class="intro-message">Que me haya demorado no significa que serás espectadora, mi vida 💗</p>
-  </div>
-</section>
-<section id="garden" class="scene">
-  <div class="garden-header"><p class="eyebrow">un pequeño lugar para ti</p><h1>Ven, mi amor...</h1><p>Hay 7 florecitas esperándote. Tócalas poquito a poquito. 💗</p></div>
-  <div id="gardenFlowers" class="garden-flowers"></div>
-  <div id="gardenProgress" class="progress"><span id="progressText">0 de 7 descubiertas</span><div class="progress-track"><div id="progressBar"></div></div></div>
-  <div id="flowerModal" class="modal" aria-hidden="true"><div class="modal-backdrop"></div><article class="flower-card"><button id="closeFlower" class="close-button">×</button><div id="modalFlower" class="mini-flower"></div><p id="modalLabel" class="eyebrow"></p><h2 id="modalTitle"></h2><p id="modalText"></p><button id="modalContinue" class="soft-button">Seguir descubriendo 💗</button></article></div>
-  <div id="pathReveal" class="path-reveal"><p>Ya descubriste todas...</p><p class="path-line">Ahora sigue el caminito, mi vida ✨</p><button id="goLetter" class="soft-button">Seguir los pétalos 💗</button></div>
-</section>
-<section id="pathScene" class="scene"><div id="pathDots" class="path-dots"></div><div class="path-content"><p class="eyebrow">uno por uno...</p><h1>Hasta donde está lo más importante.</h1><p>Sigue los pétalos, amor.</p><button id="openLetter" class="soft-button">Llegar a la carta 💌</button></div></section>
-<section id="letterScene" class="scene">
- <div class="letter-wrap"><div class="letter">
-  <div class="letter-top"><span>Para Adys</span><span>💗</span></div>
-  <div class="photo-frame"><img src="assets/foto-adys.png" alt="Nuestra foto"></div>
-  <div class="letter-body">
-   <p class="letter-greeting">Mi amor, mi vida...</p>
-   <div class="letter-text">
-    <p>Si estás aca es porque claramente no quedaste como espectadora. Hola mi amor, hoy te escribo diciéndote feliz día de las flores amarillas y proponiéndome un día darte un ramo o muchísimos y poder mirar tu carita. Quien diría que de lo que empezó siendo un accidente por un juego, ya pasamos tantas fechas y más que fechas, llevamos 2 meses y hoy el día de las flores amarillas, que accidente tan lindo eh.</p>
-    <p>Y es que si me pongo a pensar en todo lo que ha pasado desde ese día, creo que jamás me hubiera imaginado que iba a terminar escribiéndote algo así. Que entre un juego, una conversación y otra, poquito a poquito fueras convirtiéndote en alguien tan importante para mí, hasta llegar a ser mi vida, mi amor y mi esposita preciosa.</p>
-    <p>En estos dos meses han pasado muchísimas cositas, hemos tenido nuestras llamadas, nuestras noches, nuestras películas, nuestros juegos, nuestras risas, nuestras conversaciones de horas y también momentos que no han sido tan fáciles. Y aun así, cuando pienso en nosotras, no pienso solamente en lo difícil, pienso en todo lo que hemos ido construyendo juntas, en cada cosita que nos ha ido haciendo ser nosotras.</p>
-    <p>Porque creo que eso es de las cosas que más me gustan de nosotras, que no se trata solamente de tener momentos bonitos, sino de ir conociéndonos de verdad. De saber cómo somos, qué pensamos, qué sentimos, qué nos gusta, qué nos da miedo y hasta esas pequeñas cosas que quizá para alguien más no significarían nada, pero que para mí terminan siendo parte de ti y por eso me importan.</p>
-    <p>Y hablando de ti, hay tantas cosas que podría decirte que amo, que probablemente esta carta terminaría siendo muchísimo más larga de lo que ya es JAJAJA. Pero si tuviera que empezar por algo, sería por la tranquilidad que me das, por esa forma tan tuya de quererme y hacerme sentir querida, por cómo me haces sentir vista y por cómo, incluso estando lejos, muchas veces consigues hacerme sentir que estás cerquita de mí.</p>
-    <p>Amo poder conocerte cada día un poquito más, amo esas partes de ti que me has dejado conocer y amo saber que detrás de todo esto hay una persona a la que todavía me quedan muchísimas cosas por descubrir. Y no sabes cuánto me gusta eso, porque si algo quiero es seguir conociéndote, seguir escuchándote, seguir teniendo nuestras cositas y seguir descubriendo a la mujer de la que me fui enamorando poquito a poquito.</p>
-    <p>Y creo que también me gusta mucho lo que tú has hecho conmigo sin siquiera darte cuenta. Porque estando contigo he descubierto partes de mí que ni yo sabía que estaban ahí. Descubrí que sí puedo confiar, que puedo abrirme poquito a poquito y dejar que alguien conozca cosas de mí que normalmente me cuesta mostrar. Descubrí que soy mucho más sensible de lo que pensaba y que sí me gusta cuidar, estar pendiente de alguien y querer bonito.</p>
-    <p>Y contigo también descubrí que tengo muchísimo amor para dar. A veces hasta me sorprendo de todas las ganas que tengo de cuidarte, de escucharte, de hacerte sentir bien, de estar para ti y de hacer aunque sea una cosita pequeña que te saque una sonrisa. Creo que nunca había pensado tanto en cómo demostrarle a alguien lo mucho que me importa, y contigo simplemente me nace.</p>
-    <p>También me gusta que poco a poquito me hayas dejado conocer tantas partes de ti. Tu forma de pensar, tu manera de hablar, las cosas que sientes, las cosas que te gustan, tus miedos, tus inseguridades, tus ocurrencias, tus cambios de humor, tus momentos de risa y hasta esas cositas que probablemente tú piensas que son insignificantes. Para mí no lo son, porque son parte de ti y yo quiero conocer cada vez más de esa mujer que tengo la suerte de llamar mi amor.</p>
-    <p>Y sé que no todo ha sido fácil. Hemos tenido momentos donde hemos sentido miedo, ansiedad, tristeza y hemos tenido conversaciones que quizá ninguna de las dos quería tener, pero creo que incluso eso forma parte de nuestra historia. Porque para mí una relación no tiene que ser siempre perfecta ni estar todo el tiempo color de rosa para ser bonita y real. También está en aprender a hablarnos, entendernos, escucharnos y seguir intentando cuando algo no sale como esperábamos.</p>
-    <p>Y si algo tengo claro después de estos dos meses es que yo quiero seguir intentando contigo. Quiero seguir construyendo esto poquito a poquito, sin correr, pero tampoco dejando de caminar. Quiero seguir teniendo nuestras llamadas, nuestras noches, nuestras películas, nuestros juegos, nuestras risas y todas esas pequeñas cositas que hacen que un día cualquiera termine siendo uno de mis días favoritos simplemente porque estuviste tú.</p>
-    <p>Y claro que quiero mucho más que eso...</p>
-    <p>Quiero que algún día todo eso que ahora imaginamos por una llamada, por mensajes o hablando de lo que nos gustaría hacer juntas, pueda pasar de verdad. Quiero que llegue ese día en el que por fin pueda verte frente a mí, abrazarte y quedarme ahí contigo un ratito, porque después de todo lo que hemos vivido creo que ese primer abrazo va a sentirse demasiado bonito. Y sí, también quiero darte ese primer beso que todavía nos debemos JAJAJA.</p>
-    <p>Quiero despertar contigo algún día, preparar algo para comer juntas, terminar riéndonos en la cocina por cualquier tontería y simplemente disfrutar de estar ahí. Quiero vivir esos días normales contigo, porque siento que hasta un día completamente común podría ser bonito simplemente por tenerte ahí.</p>
-    <p>Quiero llegar cansada a casa y que mi casa seas tú. Poder abrazarte después de un día pesado, contarte cómo me fue, escucharte contarme el tuyo y simplemente estar juntas sin tener que hacer nada demasiado especial. Porque creo que eso es de las cosas que más quiero contigo, tener esa tranquilidad de saber que al final del día estamos la una con la otra.</p>
-    <p>También quiero caminar contigo por la playa agarradas de la mano, hacer un picnic, sentarnos en cualquier lugar y quedarnos horas hablando de nuestras cosas, de nuestros sueños, de lo que queremos hacer y de cualquier tontería que se nos ocurra. Quiero conocer muchos lugares contigo, pero también quiero conocer esa parte de la vida donde no estamos haciendo nada especial y aun así estamos felices porque estamos juntas.</p>
-    <p>Y quiero seguir viendo cómo cumplimos poquito a poquito todo eso que alguna vez dijimos que queríamos. No quiero que todo quede solamente en planes bonitos o en cosas que imaginamos mientras hablamos. Quiero que algún día podamos mirar hacia atrás y decir “¿te acuerdas cuando hablábamos de hacer esto?” y estar haciéndolo juntas.</p>
-    <p>Porque yo sí me imagino un futuro contigo. No sé exactamente cómo va a ser cada cosa ni quiero correr para llegar a él, pero sí sé que quiero caminar hacia ese futuro contigo, paso a paso, aprendiendo, creciendo y construyendo lo nuestro como hasta ahora.</p>
-    <p>Y entre todas esas cosas que quiero vivir contigo, hay algo que quiero que nunca se te olvide, yo te amo.</p>
-    <p>Te amo de una forma muy sincera, de esas que no dependen de que todo esté bien para seguir estando. Te amo cuando estamos riéndonos, cuando tenemos días bonitos, cuando hablamos durante horas y también cuando las cosas se ponen un poquito más difíciles. No necesito que seas perfecta, porque yo tampoco lo soy. Te quiero a ti, completa, con todo lo que eres.</p>
-    <p>Y tampoco quiero que alguna vez pienses que tienes que hacer algo diferente para ser suficiente para mí. Para mí ya eres tú, mi amor, y eso es más que suficiente. Me gusta la mujer que eres, me gusta la forma en la que eres conmigo y me gusta todo lo que todavía nos queda por descubrir juntas.</p>
-    <p>Quiero cuidarte, escucharte, respetarte y darte un lugar donde puedas ser tú sin miedo. Quiero que conmigo puedas sentirte querida, no solamente cuando todo está bien, sino también en esos días en los que no tengas ganas de nada, en los que estés cansada o simplemente necesites que alguien se quede cerquita.</p>
-    <p>No te prometo que nunca vamos a tener días malos, porque sería mentirte. Pero sí te puedo prometer que mientras sigamos eligiéndonos, quiero hacer mi parte para cuidar lo nuestro. Quiero hablar contigo, entenderte, aprender de nosotras y seguir construyendo esto con paciencia.</p>
-    <p>Porque yo te elijo a ti. Entre tantas personas, entre tantas casualidades y entre todo lo que pudo haber pasado después de aquel juego, mi corazón terminó encontrándote a ti. Y qué bonito que haya sido así.</p>
-    <p>Todavía estamos empezando, todavía nos quedan muchísimas cosas por vivir, muchísimas historias por crear y muchísimas fechas que celebrar. Y aunque hoy todavía no pueda darte ese ramo que algún día quiero darte mirándote a la carita, espero que estas flores amarillas te hagan sentir un poquito de todo el amor que tengo por ti.</p>
-    <p>Espero que cuando leas esto puedas sentir aunque sea una parte de todo lo que me haces sentir tú.</p>
-    <p>Gracias por estos dos meses, mi amor. Gracias por cada llamada, cada risa, cada conversación, cada noche, cada película, cada juego, cada momento bonito y también por cada momento que nos ha enseñado algo.</p>
-    <p>Y gracias por ser tú.</p>
-    <p>Por ser mi vida, mi amor, mi niña, mi esposita preciosa y esa persona que llegó por accidente y terminó siendo una de las partes más bonitas de mis días.</p>
-    <p><strong>Feliz día de las flores amarillas, mi amor. 💗</strong></p>
-    <p>Y algún día, cuando pueda estar frente a ti, quiero darte todas esas flores que hoy solamente puedo imaginar y mirarte a la carita mientras te digo todo esto otra vez.</p>
-    <p>Porque si hay algo que quiero que nunca se te olvide es que, entre todas estas flores, <strong>siempre voy a escoger la misma, tú. 💗</strong></p>
-    <p>Te amo mucho, mucho, mucho.</p>
-    <p class="signature">Con amor,<br><strong>tu vivuchi. 💗</strong></p>
-   </div>
-  </div>
- </div><button id="toFinal" class="soft-button">Seguir, mi amor ✨</button></div>
-</section>
-<section id="finalScene" class="scene"><div class="final-glow"></div><div class="final-content"><p class="eyebrow">y antes de irte...</p><h1>Mi amor, mi vida,<br>mi esposita preciosa... 💗</h1><p>Que nunca se te olvide que, entre todas estas flores, siempre voy a escoger la misma, tú. 💗</p><p class="big-love">Te amo mucho, mucho, mucho.</p><button id="rainButton" class="soft-button">Para mi niña 💗</button></div></section>
-</main>
-<script src="script.js"></script>
+
+  <!-- ESTRELLAS -->
+  <div id="stars" class="stars" aria-hidden="true"></div>
+
+  <!-- PÉTALOS -->
+  <div id="petals" class="petals" aria-hidden="true"></div>
+
+  <!-- LLUVIA FINAL -->
+  <div id="rain" class="rain" aria-hidden="true"></div>
+
+
+  <main>
+
+    <!-- =========================
+         INTRO
+    ========================== -->
+    <section id="intro" class="scene active">
+
+      <div class="moon-glow"></div>
+      <div class="moon"></div>
+
+      <div class="intro-content">
+
+        <p class="eyebrow">para mi vida</p>
+
+        <button
+          id="startBtn"
+          class="flower-button first-flower"
+          type="button"
+          aria-label="Tocar la flor"
+        >
+
+          <span id="startFlower" class="first-flower-art">
+
+            <span class="stem"></span>
+
+            <span class="flower-head">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <b></b>
+            </span>
+
+          </span>
+
+        </button>
+
+        <p class="intro-hint">
+          Tócala, amor...
+        </p>
+
+        <p class="intro-message">
+          Que me haya demorado no significa que serás espectadora, mi vida 💗
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         JARDÍN
+    ========================== -->
+    <section id="garden" class="scene">
+
+      <div class="garden-header">
+
+        <p class="eyebrow">
+          un pequeño lugar para ti
+        </p>
+
+        <h1>
+          Ven, mi amor...
+        </h1>
+
+        <p>
+          Hay 7 florecitas esperándote.
+          Tócalas poquito a poquito. 💛
+        </p>
+
+      </div>
+
+
+      <!-- LAS 7 FLORES SE CREAN CON JAVASCRIPT -->
+      <div
+        id="flowers"
+        class="garden-flowers"
+        aria-label="Jardín interactivo"
+      ></div>
+
+
+      <!-- PROGRESO -->
+      <div class="progress">
+
+        <span id="progressText">
+          0 de 7 descubiertas
+        </span>
+
+        <div class="progress-track">
+          <div id="progressBar"></div>
+        </div>
+
+      </div>
+
+
+      <!-- MENSAJE DEL JARDÍN -->
+      <div id="gardenNote" class="garden-note">
+
+        <span>🌼</span>
+
+        <p>
+          Toca una florecita para descubrir algo de nosotras.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VENTANA DE CADA FLOR
+      ========================== -->
+
+      <div
+        id="flowerModal"
+        class="modal"
+        aria-hidden="true"
+      >
+
+        <div class="modal-backdrop"></div>
+
+        <article class="flower-card">
+
+          <button
+            id="closeFlower"
+            class="close-button"
+            type="button"
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+
+          <div id="modalFlower" class="mini-flower">
+            🌻
+          </div>
+
+          <p id="modalLabel" class="eyebrow"></p>
+
+          <h2 id="modalTitle"></h2>
+
+          <p id="modalText"></p>
+
+          <button
+            id="modalContinue"
+            class="soft-button"
+            type="button"
+          >
+            Seguir descubriendo 💛
+          </button>
+
+        </article>
+
+      </div>
+
+
+      <!-- =========================
+           REVELAR CAMINO
+      ========================== -->
+
+      <div
+        id="pathReveal"
+        class="path-reveal"
+        aria-hidden="true"
+      >
+
+        <p>
+          Ya descubriste todas...
+        </p>
+
+        <p class="path-line">
+          Ahora sigue el caminito, mi vida ✨
+        </p>
+
+        <button
+          id="toPath"
+          class="soft-button"
+          type="button"
+        >
+          Seguir los pétalos 💛
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CAMINO DE PÉTALOS
+    ========================== -->
+
+    <section id="path" class="scene">
+
+      <div
+        id="pathDots"
+        class="path-dots"
+        aria-hidden="true"
+      ></div>
+
+      <div class="path-content">
+
+        <p class="eyebrow">
+          uno por uno...
+        </p>
+
+        <h1>
+          Hasta donde está lo más importante.
+        </h1>
+
+        <p>
+          Sigue los pétalos, amor.
+        </p>
+
+        <button
+          id="toLetter"
+          class="soft-button"
+          type="button"
+        >
+          Llegar a la carta 💌
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CARTA
+    ========================== -->
+
+    <section id="letter" class="scene">
+
+      <div class="letter-wrap">
+
+        <div class="letter">
+
+          <div class="letter-top">
+
+            <span>
+              Para Adys
+            </span>
+
+            <span>
+              💛
+            </span>
+
+          </div>
+
+
+          <!-- FOTO -->
+
+          <div class="photo-frame">
+
+            <img
+              id="couplePhoto"
+              src="assets/foto-adys.jpg"
+              alt="Una foto de nosotras"
+            >
+
+            <div id="photoPlaceholder">
+
+              <span>💛</span>
+
+              <p>
+                Aquí irá nuestra foto
+              </p>
+
+              <small>
+                Puedes subir una foto llamada
+                <b>foto-adys.jpg</b>
+                dentro de la carpeta assets.
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <!-- TEXTO DE LA CARTA -->
+
+          <div class="letter-body">
+
+            <p class="letter-greeting">
+              Mi amor, mi vida...
+            </p>
+
+            <div class="letter-placeholder">
+
+              <p>
+                La parte más importante todavía está esperando por ti.
+              </p>
+
+              <p>
+                Esta carta queda preparada para que después pongamos tus
+                palabras y recuerdos de ustedes, sin inventar nada que no
+                sea de ustedes.
+              </p>
+
+              <p class="signature-note">
+                💛 La carta final irá aquí.
+              </p>
+
+            </div>
+
+
+            <p class="signature">
+
+              Con muchísimo amor,
+
+              <br>
+
+              <strong>
+                tu Eli 💛
+              </strong>
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="finalBtn"
+          class="soft-button"
+          type="button"
+        >
+          Seguir, mi amor ✨
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL
+    ========================== -->
+
+    <section id="final" class="scene">
+
+      <div class="final-glow"></div>
+
+      <div class="final-content">
+
+        <p class="eyebrow">
+          y antes de irte...
+        </p>
+
+        <h1>
+          Mi amor, mi vida,
+          <br>
+          mi esposita preciosa... 💗
+        </h1>
+
+        <p>
+          Que nunca se te olvide que, entre todas estas flores,
+          siempre voy a escoger la misma: tú. 💗
+        </p>
+
+        <p class="big-love">
+          Te amo mucho, mucho, mucho.
+        </p>
+
+        <button
+          id="rainButton"
+          class="soft-button"
+          type="button"
+        >
+          Lluvia para mi niña 🌼
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       MÚSICA OPCIONAL
+  ========================== -->
+
+  <audio
+    id="music"
+    src="assets/music.mp3"
+    preload="auto"
+  ></audio>
+
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+
 </body>
 </html>
